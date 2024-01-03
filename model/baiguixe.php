@@ -16,7 +16,7 @@ class BaiGuiXe
     // read data
     public function read()
     {
-        $query = "SELECT * FROM bai_gui_xe order by id asc";
+        $query = "SELECT * FROM bai_gui_xe";
         $stmt = $this->conn->prepare($query);
         $stmt->execute();
         return $stmt;
@@ -38,15 +38,16 @@ class BaiGuiXe
     // create data
     public function create()
     {
-        $query = "INSERT INTO bai_gui_xe set id=:id, name=:name";
+        $query = "INSERT INTO bai_gui_xe(id, name) values (?,?)";
         $stmt = $this->conn->prepare($query);
 
         $this->id = htmlspecialchars(strip_tags($this->id));
         $this->name = htmlspecialchars(strip_tags($this->name));
 
-        $stmt->bindParam(":id", $this->id);
-        $stmt->bindParam(":name", $this->name);
-
+        $stmt->bindParam(1, $this->id);
+        $stmt->bindParam(2, $this->name);
+        // echo $this -> id . ": id";
+        // echo $this -> name . ": id";
         if ($stmt->execute()) {
             return true;
         }

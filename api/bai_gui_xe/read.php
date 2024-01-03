@@ -29,5 +29,5 @@ if ($num > 0) {
         array_push($baiguixe_array['data'], $baiguixe_item);
     }
 
-    echo json_encode($baiguixe_array);
+    echo json_encode( array_reverse($baiguixe_array));
 }
