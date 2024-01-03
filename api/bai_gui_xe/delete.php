@@ -13,13 +13,11 @@ $connect = $db->connect();
 $baiguixe = new BaiGuiXe($connect);
 
 $data = json_decode(file_get_contents("php://input"));
-$baiguixe->id = $data->id;
+$baiguixe->id = isset($_GET['id']) ? $_GET['id'] : die();;
+// $baiguixe->id = $data->id;
 
-if($baiguixe->delete()){
+if ($baiguixe->delete()) {
     echo json_encode(array('message', 'baiguixe Deleted'));
-}else{
+} else {
     echo json_encode(array('message', 'baiguixe not Deleted'));
 }
-
-
-?>
