@@ -1,16 +1,11 @@
 <?php
-class Question
+class Quyen
 {
     private $conn;
 
-    //question properties
-    public $id_cauhoi;
-    public $title;
-    public $cau_a;
-    public $cau_b;
-    public $cau_c;
-    public $cau_d;
-    public $cau_dung;
+    //Quyen properties
+    public $ID;
+    public $Name;
 
     // connect db
     public function __construct($conn)
@@ -21,7 +16,7 @@ class Question
     // read data
     public function read()
     {
-        $query = "SELECT * FROM cauhoi order by id_cauhoi asc";
+        $query = "SELECT * FROM cauhoi order by ID asc";
         $stmt = $this->conn->prepare($query);
         $stmt->execute();
         return $stmt;
@@ -30,13 +25,13 @@ class Question
     // show data
     public function show()
     {
-        $query = "SELECT * FROM cauhoi where id_cauhoi=? limit 1";
+        $query = "SELECT * FROM cauhoi where ID=? limit 1";
         $stmt = $this->conn->prepare($query);
-        $stmt->bindParam(1, $this->id_cauhoi);
+        $stmt->bindParam(1, $this->ID);
         $stmt->execute();
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        $this->title = $row["title"];
+        $this->Name = $row["Name"];
         $this->cau_a = $row["cau_a"];
         $this->cau_b = $row["cau_b"];
         $this->cau_c = $row["cau_c"];
@@ -47,17 +42,17 @@ class Question
     // create data
     public function create()
     {
-        $query = "INSERT INTO cauhoi set title=:title, cau_a=:cau_a, cau_b=:cau_b, cau_c=:cau_c, cau_d=:cau_d, cau_dung =:cau_dung";
+        $query = "INSERT INTO cauhoi set Name=:Name, cau_a=:cau_a, cau_b=:cau_b, cau_c=:cau_c, cau_d=:cau_d, cau_dung =:cau_dung";
         $stmt = $this->conn->prepare($query);
 
-        $this->title = htmlspecialchars(strip_tags($this->title));
+        $this->Name = htmlspecialchars(strip_tags($this->Name));
         $this->cau_a = htmlspecialchars(strip_tags($this->cau_a));
         $this->cau_b = htmlspecialchars(strip_tags($this->cau_b));
         $this->cau_c = htmlspecialchars(strip_tags($this->cau_c));
         $this->cau_d = htmlspecialchars(strip_tags($this->cau_d));
         $this->cau_dung = htmlspecialchars(strip_tags($this->cau_dung));
 
-        $stmt->bindParam(":title", $this->title);
+        $stmt->bindParam(":Name", $this->Name);
         $stmt->bindParam(":cau_a", $this->cau_a);
         $stmt->bindParam(":cau_b", $this->cau_b);
         $stmt->bindParam(":cau_c", $this->cau_c);
@@ -71,36 +66,30 @@ class Question
         printf("Error %s.\n" . $stmt->error);
         return false;
     }
-
-    // create data
-    public function create()
-    {
-    }
-
 
 
     // update data
     public function update()
     {
-        $query = "update cauhoi set title=:title, cau_a=:cau_a, cau_b=:cau_b, cau_c=:cau_c, cau_d=:cau_d, cau_dung =:cau_dung
-        where id_cauhoi =:id_cauhoi";
+        $query = "update cauhoi set Name=:Name, cau_a=:cau_a, cau_b=:cau_b, cau_c=:cau_c, cau_d=:cau_d, cau_dung =:cau_dung
+        where ID =:ID";
         $stmt = $this->conn->prepare($query);
 
-        $this->title = htmlspecialchars(strip_tags($this->title));
+        $this->Name = htmlspecialchars(strip_tags($this->Name));
         $this->cau_a = htmlspecialchars(strip_tags($this->cau_a));
         $this->cau_b = htmlspecialchars(strip_tags($this->cau_b));
         $this->cau_c = htmlspecialchars(strip_tags($this->cau_c));
         $this->cau_d = htmlspecialchars(strip_tags($this->cau_d));
         $this->cau_dung = htmlspecialchars(strip_tags($this->cau_dung));
-        $this->id_cauhoi = htmlspecialchars(strip_tags($this->id_cauhoi));
+        $this->ID = htmlspecialchars(strip_tags($this->ID));
 
-        $stmt->bindParam(":title", $this->title);
+        $stmt->bindParam(":Name", $this->Name);
         $stmt->bindParam(":cau_a", $this->cau_a);
         $stmt->bindParam(":cau_b", $this->cau_b);
         $stmt->bindParam(":cau_c", $this->cau_c);
         $stmt->bindParam(":cau_d", $this->cau_d);
         $stmt->bindParam(":cau_dung", $this->cau_dung);
-        $stmt->bindParam(":id_cauhoi", $this->id_cauhoi);
+        $stmt->bindParam(":ID", $this->ID);
 
         if ($stmt->execute()) {
             return true;
@@ -110,18 +99,15 @@ class Question
         return false;
     }
 
-
-       
-
     // delete data
     public function delete()
     {
-        $query = "delete from cauhoi where id_cauhoi =:id_cauhoi";
+        $query = "delete from cauhoi where ID =:ID";
         $stmt = $this->conn->prepare($query);
 
-        $this->id_cauhoi = htmlspecialchars(strip_tags($this->id_cauhoi));
+        $this->ID = htmlspecialchars(strip_tags($this->ID));
 
-        $stmt->bindParam(":id_cauhoi", $this->id_cauhoi);
+        $stmt->bindParam(":ID", $this->ID);
         if ($stmt->execute()) {
             return true;
         }

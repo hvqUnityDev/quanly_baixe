@@ -2,6 +2,9 @@
 header('Access-Control-Allow-Origin:*');
 header('Content-Type: application/json');
 header('Access-Control-Allow-Headers:*');
+header('Access-Control-Allow-Method:*');
+header('Access-Control-Request-Method:*');
+header('Access-Control-Request-Headers:*');
 
 
 include_once('../../config/db.php');
