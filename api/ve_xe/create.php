@@ -18,11 +18,8 @@ $vexe->bien_so_xe = $data->bien_so_xe;
 $vexe->ngay_dang_ky = $data->ngay_dang_ky;
 $vexe->ngay_het_han = $data->ngay_het_han;
 
-if($vexe->create()){
+if ($vexe->create()) {
     echo json_encode(array('message', 'vexe created'));
-}else{
+} else {
     echo json_encode(array('message', 'vexe not created'));
 }
-
-
-?>
