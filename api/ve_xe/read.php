@@ -21,6 +21,8 @@ if($num > 0){
 
         $vexe_item = array(
             'id' => $id,
+            'id_nguoidung' => $id_nguoidung,
+            'Ho_ten' => $Ho_ten,
             'bien_so_xe' => $bien_so_xe,
             'ngay_dang_ky' => $ngay_dang_ky,
             'ngay_het_han' => $ngay_het_han

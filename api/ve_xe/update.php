@@ -15,6 +15,8 @@ $vexe = new vexe($connect);
 $data = json_decode(file_get_contents("php://input"));
 
 $vexe->id = $data->id;
+$vexe->id_nguoidung = $data->id_nguoidung;
+$vexe->Ho_ten = $data->Ho_ten;
 $vexe->bien_so_xe = $data->bien_so_xe;
 $vexe->ngay_dang_ky = $data->ngay_dang_ky;
 $vexe->ngay_het_han = $data->ngay_het_han;
