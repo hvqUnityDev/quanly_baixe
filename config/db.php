@@ -18,8 +18,6 @@ class db
             echo "Connection failed: " . $e->getMessage();
         }
 
-        return $this->conn;
+        return $this->conn; 
     }
 }
-
-?>
