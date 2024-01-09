@@ -6,10 +6,10 @@ class nguoIDung
     //nguoIDung properties
     public $ID;
     public $Pass;
-    public $Ho_Ten;
-    public $Que_Quan;
+    public $Ho_ten;
+    public $Que_quan;
     public $So_DT;
-    public $Gioi_Tinh;
+    public $Gioi_tinh;
     public $ID_Role;
 
     // connect db
@@ -30,38 +30,45 @@ class nguoIDung
     // show data
     public function show()
     {
-        $query = "SELECT * FROM nguoi_dung where ID=? limit 1";
+        $query = "SELECT * FROM nguoi_dung where ID=? and Pass=? limit 1";
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(1, $this->ID);
-        $stmt->execute();
-        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        $stmt->bindParam(2, $this->Pass);
+        if(!$stmt->execute()){
+            return false;
+        }
 
-        $this->Pass = $row["Pass"];
-        $this->Ho_Ten = $row["Ho_Ten"];
-        $this->Que_Quan = $row["Que_Quan"];
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        if($stmt->rowCount() == 0){
+            return false;
+        }
+        
+        $this->Ho_ten = $row["Ho_ten"];
+        $this->Que_quan = $row["Que_quan"];
         $this->So_DT = $row["So_DT"];
-        $this->Gioi_Tinh = $row["Gioi_Tinh"];
+        $this->Gioi_tinh = $row["Gioi_tinh"];
         $this->ID_Role = $row["ID_Role"];
+        return true;
     }
 
     // create data
     public function create()
     {
-        $query = "INSERT INTO nguoi_dung set Pass=:Pass, Ho_Ten=:Ho_Ten, Que_Quan=:Que_Quan, So_DT=:So_DT, Gioi_Tinh=:Gioi_Tinh, ID_Role =:ID_Role";
+        $query = "INSERT INTO nguoi_dung set Pass=:Pass, Ho_ten=:Ho_ten, Que_quan=:Que_quan, So_DT=:So_DT, Gioi_tinh=:Gioi_tinh, ID_Role =:ID_Role";
         $stmt = $this->conn->prepare($query);
 
         $this->Pass = htmlspecialchars(strip_tags($this->Pass));
-        $this->Ho_Ten = htmlspecialchars(strip_tags($this->Ho_Ten));
-        $this->Que_Quan = htmlspecialchars(strip_tags($this->Que_Quan));
+        $this->Ho_ten = htmlspecialchars(strip_tags($this->Ho_ten));
+        $this->Que_quan = htmlspecialchars(strip_tags($this->Que_quan));
         $this->So_DT = htmlspecialchars(strip_tags($this->So_DT));
-        $this->Gioi_Tinh = htmlspecialchars(strip_tags($this->Gioi_Tinh));
+        $this->Gioi_tinh = htmlspecialchars(strip_tags($this->Gioi_tinh));
         $this->ID_Role = htmlspecialchars(strip_tags($this->ID_Role));
 
         $stmt->bindParam(":Pass", $this->Pass);
-        $stmt->bindParam(":Ho_Ten", $this->Ho_Ten);
-        $stmt->bindParam(":Que_Quan", $this->Que_Quan);
+        $stmt->bindParam(":Ho_ten", $this->Ho_ten);
+        $stmt->bindParam(":Que_quan", $this->Que_quan);
         $stmt->bindParam(":So_DT", $this->So_DT);
-        $stmt->bindParam(":Gioi_Tinh", $this->Gioi_Tinh);
+        $stmt->bindParam(":Gioi_tinh", $this->Gioi_tinh);
         $stmt->bindParam(":ID_Role", $this->ID_Role);
 
         if ($stmt->execute()) {
@@ -76,22 +83,22 @@ class nguoIDung
     // update data
     public function update()
     {
-        $query = "update nguoi_dung set Pass=:Pass, Ho_Ten=:Ho_Ten, Que_Quan=:Que_Quan, So_DT=:So_DT, Gioi_Tinh=:Gioi_Tinh, ID_Role =:ID_Role
+        $query = "update nguoi_dung set Pass=:Pass, Ho_ten=:Ho_ten, Que_quan=:Que_quan, So_DT=:So_DT, Gioi_tinh=:Gioi_tinh, ID_Role =:ID_Role
         where ID =:ID";
         $stmt = $this->conn->prepare($query);
 
         $this->Pass = htmlspecialchars(strip_tags($this->Pass));
-        $this->Ho_Ten = htmlspecialchars(strip_tags($this->Ho_Ten));
-        $this->Que_Quan = htmlspecialchars(strip_tags($this->Que_Quan));
+        $this->Ho_ten = htmlspecialchars(strip_tags($this->Ho_ten));
+        $this->Que_quan = htmlspecialchars(strip_tags($this->Que_quan));
         $this->So_DT = htmlspecialchars(strip_tags($this->So_DT));
-        $this->Gioi_Tinh = htmlspecialchars(strip_tags($this->Gioi_Tinh));
+        $this->Gioi_tinh = htmlspecialchars(strip_tags($this->Gioi_tinh));
         $this->ID_Role = htmlspecialchars(strip_tags($this->ID_Role));
 
         $stmt->bindParam(":Pass", $this->Pass);
-        $stmt->bindParam(":Ho_Ten", $this->Ho_Ten);
-        $stmt->bindParam(":Que_Quan", $this->Que_Quan);
+        $stmt->bindParam(":Ho_ten", $this->Ho_ten);
+        $stmt->bindParam(":Que_quan", $this->Que_quan);
         $stmt->bindParam(":So_DT", $this->So_DT);
-        $stmt->bindParam(":Gioi_Tinh", $this->Gioi_Tinh);
+        $stmt->bindParam(":Gioi_tinh", $this->Gioi_tinh);
         $stmt->bindParam(":ID_Role", $this->ID_Role);
         $stmt->bindParam(":ID", $this->ID);
 
