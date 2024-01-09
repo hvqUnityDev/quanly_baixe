@@ -72,10 +72,7 @@ class Question
         return false;
     }
 
-    // create data
-    public function create()
-    {
-    }
+   
 
 
 

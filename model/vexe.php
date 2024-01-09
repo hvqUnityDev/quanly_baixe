@@ -6,6 +6,7 @@ class VeXe
     //question properties
     public $id;
     public $id_nguoidung;
+    public $Ho_ten;
     public $bien_so_xe;
     public $ngay_dang_ky;
     public $ngay_het_han;
@@ -35,6 +36,7 @@ class VeXe
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
         $this->id_nguoidung = $row["id_nguoidung"];
+        $this->Ho_ten = $row["Ho_ten"];
         $this->bien_so_xe = $row["bien_so_xe"];
         $this->ngay_dang_ky = $row["ngay_dang_ky"];
         $this->ngay_het_han = $row["ngay_het_han"];

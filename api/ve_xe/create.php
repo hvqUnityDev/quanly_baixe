@@ -14,14 +14,15 @@ $vexe = new VeXe($connect);
 
 $data = json_decode(file_get_contents("php://input"));
 $vexe->id = $data->id;
+$vexe->id_nguoidung = $data->id_nguoidung;
 $vexe->bien_so_xe = $data->bien_so_xe;
 $vexe->ngay_dang_ky = $data->ngay_dang_ky;
 $vexe->ngay_het_han = $data->ngay_het_han;
 
 if($vexe->create()){
-    echo json_encode(array('message', 'vexe created'));
+    echo json_encode(array('message', 'complete'));
 }else{
-    echo json_encode(array('message', 'vexe not created'));
+    echo json_encode(array('message', 'error'));
 }
 
 
