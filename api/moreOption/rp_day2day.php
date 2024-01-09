@@ -18,7 +18,6 @@ $luotvaocua_array = [];
 if(isset($_GET["check_in"]) && isset($_GET["check_out"])){
     $luotvaocua->check_in = $_GET["check_in"];
     $luotvaocua->check_out = $_GET["check_out"];
-echo  $luotvaocua->check_in . "-".  $luotvaocua->check_out;
     $read = $luotvaocua->rp_day2day();
     $num = $read->rowCount();
     
