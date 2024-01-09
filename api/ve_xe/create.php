@@ -18,12 +18,13 @@ $vexe->id_nguoidung = $data->id_nguoidung;
 $vexe->bien_so_xe = $data->bien_so_xe;
 $vexe->ngay_dang_ky = $data->ngay_dang_ky;
 $vexe->ngay_het_han = $data->ngay_het_han;
+$mess = [];
 
 if($vexe->create()){
-    echo json_encode(array('message', 'complete'));
+    $mess['message'] = 'complete';
 }else{
-    echo json_encode(array('message', 'error'));
+    $mess['message'] = 'error';
 }
 
-
+print_r(json_encode($mess));
 ?>
