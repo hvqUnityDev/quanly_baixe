@@ -16,7 +16,7 @@ $num = $read->rowCount();
 
 if($num > 0){
     $vexe_array = [];
-    $vexe_array['vexe'] = [];
+    $vexe_array['data'] = [];
 
     while($row = $read->fetch(PDO::FETCH_ASSOC)){
         extract($row);
@@ -30,7 +30,7 @@ if($num > 0){
             'ngay_het_han' => $ngay_het_han
         );
 
-        array_push($vexe_array['vexe'], $vexe_item);
+        array_push($vexe_array['data'], $vexe_item);
     }
 
     echo json_encode($vexe_array);
