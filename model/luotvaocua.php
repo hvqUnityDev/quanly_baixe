@@ -17,6 +17,18 @@ class LuotVaoCua
         $this->conn = $conn;
     }
 
+    public function rp_day2day(){
+        //'2024-01-01' '2024-02-01'
+        $query = "SELECT * FROM luot_vao_cua WHERE check_in >= ? AND check_out <= ? order by check_in desc";
+
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(1, $this->check_in);
+        $stmt->bindParam(2, $this->check_out);
+
+        $stmt->execute();
+        return $stmt;
+    }
+
     // read data
     public function read()
     {
